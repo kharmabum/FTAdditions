@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
   s.source_files = "*.{h,m}", "Categories/*.{h,m}", "Vendor/*.{h,m}", "Util/*.{h,m}"
   s.frameworks   = "UIKit", "CoreGraphics", "CoreAnimation"
   s.requires_arc = true
+  s.dependency 'MBProgressHUD'
 end
