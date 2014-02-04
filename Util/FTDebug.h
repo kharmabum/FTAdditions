@@ -21,8 +21,7 @@
 #define debug(format, ...)
 #endif
 
-#define debugRect(rect) debug(@"%s x:%.4f, y:%.4f, w:%.4f, h%.4f", #rect,
-rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
+#define debugRect(rect) debug(@"%s x:%.4f, y:%.4f, w:%.4f, h%.4f", #rect,rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
 #define debugSize(size) debug(@"%s w:%.4f, h:%.4f", #size, size.width, size.height)
 #define debugPoint(point) debug(@"%s x:%.4f, y:%.4f", #pt, pt.x, pt.y)
 
