@@ -1,4 +1,5 @@
 #import "NSObject+FTAdditions.h"
+#import <objc/objc-class.h>
 
 @implementation NSObject (FTAdditions)
 
