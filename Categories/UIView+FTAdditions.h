@@ -30,8 +30,6 @@ typedef enum
 
 - (void)removeAllSubviews;
 
-- (id)firstSuperviewOfClass:(Class)superviewClass;
-
 #pragma mark - Static Methods
 
 + (void)animateIf: (BOOL)condition
