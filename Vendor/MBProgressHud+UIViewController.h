@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
-#import "MBProgressHUD.h"
+
+@class MBProgressHUD
 
 @interface UIView (UIViewWithMBProgressHUD)
 

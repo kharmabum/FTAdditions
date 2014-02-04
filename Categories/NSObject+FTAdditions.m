@@ -1,4 +1,4 @@
-#import "NSObject+PerformBlock.h"
+#import "NSObject+FTAdditions.h"
 
 @implementation NSObject (FTAdditions)
 
@@ -31,9 +31,9 @@
 	dispatch_queue_t globalQueue = dispatch_get_global_queue(
                                                              DISPATCH_QUEUE_PRIORITY_BACKGROUND,
                                                              0);
-    
+
 	dispatch_async(
-                   globalQueue, 
+                   globalQueue,
                    block);
 }
 
@@ -52,12 +52,12 @@
 {
     Method originalMethod = class_getInstanceMethod(self, originalSelector);
     Method newMethod = class_getInstanceMethod(self, newSelector);
-    
+
     BOOL methodAdded = class_addMethod([self class],
                                        originalSelector,
                                        method_getImplementation(newMethod),
                                        method_getTypeEncoding(newMethod));
-    
+
     if (methodAdded) {
         class_replaceMethod([self class],
                             newSelector,
