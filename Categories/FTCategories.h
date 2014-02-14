@@ -6,5 +6,6 @@
 #import "NSURLRequest+FTAdditions.h"
 #import "UIImage+FTAdditions.h"
 #import "UIView+FTAdditions.h"
+#import "UIColor+FTAdditions.h"
 
 #endif

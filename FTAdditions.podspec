@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/kharmabum/FTAdditions.git", :tag => "0.1.0" }
   s.platform     = :ios, "7.0"
   s.source_files = "*.{h,m}", "Categories/*.{h,m}", "Vendor/*.{h,m}", "Util/*.{h,m}"
-  s.frameworks   = "UIKit", "CoreGraphics", "QuartzCORE"
+  s.frameworks   = "UIKit", "CoreGraphics", "QuartzCore"
   s.requires_arc = true
   s.dependency 'MBProgressHUD'
 end
