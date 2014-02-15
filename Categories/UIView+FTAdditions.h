@@ -3,26 +3,26 @@
 
 /* Autolayout */
 
-typedef NS_OPTIONS(unsigned long, CYGUIViewEdgePin){
-    CYGUIViewEdgePinTop= 1 << 0,
-    CYGUIViewEdgePinRight= 1 << 1,
-    CYGUIViewEdgePinBottom= 1 << 2,
-    CYGUIViewEdgePinLeft= 1 << 3,
-    CYGUIViewEdgePinAll = ~0UL
+typedef NS_OPTIONS(unsigned long, FTUIViewEdgePin){
+    FTUIViewEdgePinTop= 1 << 0,
+    FTUIViewEdgePinRight= 1 << 1,
+    FTUIViewEdgePinBottom= 1 << 2,
+    FTUIViewEdgePinLeft= 1 << 3,
+    FTUIViewEdgePinAll = ~0UL
 };
 
 /* Legacy layout */
 
-typedef NS_ENUM(NSUInteger, CYGUIViewHorizontalAlignment) {
-  CYGUIViewHorizontalAlignmentCenter = 0,
-  CYGUIViewHorizontalAlignmentLeft = 1,
-  CYGUIViewHorizontalAlignmentRight = 2
+typedef NS_ENUM(NSUInteger, FTUIViewHorizontalAlignment) {
+  FTUIViewHorizontalAlignmentCenter = 0,
+  FTUIViewHorizontalAlignmentLeft = 1,
+  FTUIViewHorizontalAlignmentRight = 2
 };
 
-typedef NS_ENUM(NSUInteger, CYGUIViewVerticalAlignment) {
-  CYGUIViewVerticalAlignmentMiddle = 0,
-  CYGUIViewVerticalAlignmentTop = 1,
-  CYGUIViewVerticalAlignmentBottom = 2
+typedef NS_ENUM(NSUInteger, FTUIViewVerticalAlignment) {
+  FTUIViewVerticalAlignmentMiddle = 0,
+  FTUIViewVerticalAlignmentTop = 1,
+  FTUIViewVerticalAlignmentBottom = 2
 };
 
 
@@ -40,17 +40,17 @@ typedef NS_ENUM(NSUInteger, CYGUIViewVerticalAlignment) {
 /* Pinning */
 
 /// Pins a view's edge to a peer item's edge. The item may be the layout guide of a view controller
--(NSLayoutConstraint *)pinEdge:(CYGUIViewEdgePin)edge toEdge:(CYGUIViewEdgePin)toEdge ofItem:(id)peerItem;
--(NSLayoutConstraint *)pinEdge:(CYGUIViewEdgePin)edge toEdge:(CYGUIViewEdgePin)toEdge ofItem:(id)peerItem inset:(CGFloat)inset;
+-(NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem;
+-(NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem inset:(CGFloat)inset;
 
 
 /// Pins a views edge(s) to another views edge(s). Both views must be in the same view hierarchy.
--(NSArray *)pinEdges:(CYGUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView;
--(NSArray *)pinEdges:(CYGUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView inset:(CGFloat)inset;
+-(NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView;
+-(NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView inset:(CGFloat)inset;
 
 /// Pins a view to a specific edge(s) of its superview, with a specified inset
--(NSArray*)pinEdges:(CYGUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset;
--(NSArray*)pinEdges:(CYGUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset usingLayoutGuidesFrom:(UIViewController*)viewController;
+-(NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset;
+-(NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset usingLayoutGuidesFrom:(UIViewController*)viewController;
 
 // Pins a point to a specific point in the superview's frame. Use NSLayoutAttributeNotAnAttribute to only pin in one dimension
 -(NSArray*)pinXAttribute:(NSLayoutAttribute)x YAttribute:(NSLayoutAttribute)y toPointInSuperview:(CGPoint)point;
@@ -93,10 +93,10 @@ typedef NS_ENUM(NSUInteger, CYGUIViewVerticalAlignment) {
 
 #pragma mark - Legacy layout
 
-- (void)alignHorizontally:(CYGUIViewHorizontalAlignment)horizontalAlignment;
-- (void)alignVertically:(CYGUIViewVerticalAlignment)verticalAlignment;
-- (void)alignHorizontally:(CYGUIViewHorizontalAlignment)horizontalAlignment
-               vertically:(CYGUIViewVerticalAlignment)verticalAlignment;
+- (void)alignHorizontally:(FTUIViewHorizontalAlignment)horizontalAlignment;
+- (void)alignVertically:(FTUIViewVerticalAlignment)verticalAlignment;
+- (void)alignHorizontally:(FTUIViewHorizontalAlignment)horizontalAlignment
+               vertically:(FTUIViewVerticalAlignment)verticalAlignment;
 
 #pragma mark - Util
 

@@ -79,45 +79,45 @@
 
 /* Pinning */
 
--(NSLayoutConstraint *)pinEdge:(CYGUIViewEdgePin)edge toEdge:(CYGUIViewEdgePin)toEdge ofItem:(id)peerItem
+-(NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem
 {
     return [self pinEdge:edge toEdge:toEdge ofItem:peerItem inset:0.0];
 }
 
--(NSLayoutConstraint *)pinEdge:(CYGUIViewEdgePin)edge toEdge:(CYGUIViewEdgePin)toEdge ofItem:(id)peerItem inset:(CGFloat)inset
+-(NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem inset:(CGFloat)inset
 {
     NSLayoutAttribute edgeAttribute, toEdgeAttribute;
     NSUInteger edgeCount = 0;
     NSUInteger toEdgeCount = 0;
-  if (edge & CYGUIViewEdgePinTop) {
+  if (edge & FTUIViewEdgePinTop) {
       edgeAttribute = NSLayoutAttributeTop;
       edgeCount++;
   }
-    if (edge & CYGUIViewEdgePinLeft) {
+    if (edge & FTUIViewEdgePinLeft) {
     		edgeAttribute = NSLayoutAttributeLeft;
     		edgeCount++;
     }
-    if (edge & CYGUIViewEdgePinRight) {
+    if (edge & FTUIViewEdgePinRight) {
     		edgeAttribute = NSLayoutAttributeRight;
     		edgeCount++;
     }
-    if (edge & CYGUIViewEdgePinBottom) {
+    if (edge & FTUIViewEdgePinBottom) {
     		edgeAttribute = NSLayoutAttributeBottom;
     		edgeCount++;
     }
-	  if (toEdge & CYGUIViewEdgePinTop) {
+	  if (toEdge & FTUIViewEdgePinTop) {
 	  	  toEdgeAttribute = NSLayoutAttributeTop;
 	  	  toEdgeCount++;
 	  }
-    if (toEdge & CYGUIViewEdgePinLeft) {
+    if (toEdge & FTUIViewEdgePinLeft) {
     		toEdgeAttribute = NSLayoutAttributeLeft;
     		toEdgeCount++;
     }
-    if (toEdge & CYGUIViewEdgePinRight) {
+    if (toEdge & FTUIViewEdgePinRight) {
     		toEdgeAttribute = NSLayoutAttributeRight;
     		toEdgeCount++;
     }
-    if (toEdge & CYGUIViewEdgePinBottom) {
+    if (toEdge & FTUIViewEdgePinBottom) {
     		toEdgeAttribute = NSLayoutAttributeBottom;
     		toEdgeCount++;
     }
@@ -126,34 +126,34 @@
 
 }
 
--(NSArray *)pinEdges:(CYGUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView
+-(NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView
 {
     return [self pinEdges:edges toSameEdgesOfView:peerView inset:0];
 }
--(NSArray *)pinEdges:(CYGUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView inset:(CGFloat)inset
+-(NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView inset:(CGFloat)inset
 {
     NSMutableArray *constraints = [NSMutableArray arrayWithCapacity:4];
-    if (edges & CYGUIViewEdgePinTop) {
+    if (edges & FTUIViewEdgePinTop) {
         [constraints addObject:[self pinEdgeAttribute:NSLayoutAttributeTop toEdgeAttribute:NSLayoutAttributeTop ofItem:peerView inset:inset]];
     }
-    if (edges & CYGUIViewEdgePinLeft) {
+    if (edges & FTUIViewEdgePinLeft) {
         [constraints addObject:[self pinEdgeAttribute:NSLayoutAttributeLeft toEdgeAttribute:NSLayoutAttributeLeft ofItem:peerView inset:inset]];
     }
-    if (edges & CYGUIViewEdgePinRight) {
+    if (edges & FTUIViewEdgePinRight) {
         [constraints addObject:[self pinEdgeAttribute:NSLayoutAttributeRight toEdgeAttribute:NSLayoutAttributeRight ofItem:peerView inset:-inset]];
     }
-    if (edges & CYGUIViewEdgePinBottom) {
+    if (edges & FTUIViewEdgePinBottom) {
         [constraints addObject:[self pinEdgeAttribute:NSLayoutAttributeBottom toEdgeAttribute:NSLayoutAttributeBottom ofItem:peerView inset:-inset]];
     }
     return [constraints copy];
 }
 
--(NSArray*)pinEdges:(CYGUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset;
+-(NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset;
 {
 	return [self pinEdges:edges toSuperViewWithInset:inset usingLayoutGuidesFrom:nil];
 }
 
--(NSArray*)pinEdges:(CYGUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset usingLayoutGuidesFrom:(UIViewController*)viewController
+-(NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset usingLayoutGuidesFrom:(UIViewController*)viewController
 {
     UIView *superview = self.superview;
     NSAssert(superview,@"Can't pin to a superview if no superview exists");
@@ -170,18 +170,18 @@
 
     NSMutableArray *constraints = [NSMutableArray arrayWithCapacity:4];
 
-    if (edges & CYGUIViewEdgePinTop) {
+    if (edges & FTUIViewEdgePinTop) {
         id item = topItem ? topItem : superview;
         NSLayoutAttribute attribute = topItem ? NSLayoutAttributeBottom : NSLayoutAttributeTop;
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:item attribute:attribute multiplier:1.0 constant:inset]];
     }
-    if (edges & CYGUIViewEdgePinLeft) {
+    if (edges & FTUIViewEdgePinLeft) {
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeLeft multiplier:1.0 constant:inset]];
     }
-    if (edges & CYGUIViewEdgePinRight) {
+    if (edges & FTUIViewEdgePinRight) {
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:-inset]];
     }
-    if (edges & CYGUIViewEdgePinBottom) {
+    if (edges & FTUIViewEdgePinBottom) {
         id item = bottomItem ? bottomItem : superview;
         NSLayoutAttribute attribute = bottomItem ? NSLayoutAttributeTop : NSLayoutAttributeBottom;
         [constraints addObject:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:item attribute:attribute multiplier:1.0 constant:-inset]];
@@ -402,24 +402,24 @@
 
 #pragma mark - Legacy layout
 
-- (void)alignHorizontally:(CYGUIViewHorizontalAlignment)horizontalAlignment
+- (void)alignHorizontally:(FTUIViewHorizontalAlignment)horizontalAlignment
 {
 	if (self.superview == nil) {
 		return;
 	}
 
 	switch (horizontalAlignment) {
-		case CYGUIViewHorizontalAlignmentCenter:
+		case FTUIViewHorizontalAlignmentCenter:
  		{
 			self.xOrigin = (self.superview.width - self.width) / 2.0f;
 			break;
 		}
-		case CYGUIViewHorizontalAlignmentLeft:
+		case FTUIViewHorizontalAlignmentLeft:
 		{
 			self.xOrigin = 0.0f;
 			break;
 		}
-		case CYGUIViewHorizontalAlignmentRight:
+		case FTUIViewHorizontalAlignmentRight:
 		{
 			self.xOrigin = self.superview.width - self.width;
 			break;
@@ -427,24 +427,24 @@
 	}
 }
 
-- (void)alignVertically: (CYGUIViewVerticalAlignment)verticalAlignment
+- (void)alignVertically: (FTUIViewVerticalAlignment)verticalAlignment
 {
 	if (self.superview == nil) {
 		return;
 	}
 
 	switch (verticalAlignment) {
-		case CYGUIViewVerticalAlignmentMiddle:
+		case FTUIViewVerticalAlignmentMiddle:
 		{
 			self.yOrigin = (self.superview.height - self.height) / 2.0f;
 			break;
 		}
-		case CYGUIViewVerticalAlignmentTop:
+		case FTUIViewVerticalAlignmentTop:
 		{
 			self.yOrigin = 0.0;
 			break;
 		}
-		case CYGUIViewVerticalAlignmentBottom:
+		case FTUIViewVerticalAlignmentBottom:
 		{
 			self.yOrigin = self.superview.height - self.height;
 			break;
@@ -452,8 +452,8 @@
 	}
 }
 
-- (void)alignHorizontally: (CYGUIViewHorizontalAlignment)horizontalAlignment
-               vertically: (CYGUIViewVerticalAlignment)verticalAlignment
+- (void)alignHorizontally: (FTUIViewHorizontalAlignment)horizontalAlignment
+               vertically: (FTUIViewVerticalAlignment)verticalAlignment
 {
 	[self alignHorizontally: horizontalAlignment];
 	[self alignVertically: verticalAlignment];
