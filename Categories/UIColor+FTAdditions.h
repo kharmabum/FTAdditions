@@ -1,12 +1,5 @@
-//
-//  UIColor+FTAdditions.h
-//  FTStarterApplication
-//
-//  Created by IO on 2/3/14.
-//  Copyright (c) 2014 Fototropik. All rights reserved.
-//
-
-#import <UIKit/UIKit.h>
+@import Foundation;
+@import UIKit;
 
 @interface UIColor (FTAdditions)
 

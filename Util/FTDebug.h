@@ -30,5 +30,6 @@
 #define debugRect(rect) debug(@"%s x:%.4f, y:%.4f, w:%.4f, h%.4f", #rect,rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
 #define debugSize(size) debug(@"%s w:%.4f, h:%.4f", #size, size.width, size.height)
 #define debugPoint(point) debug(@"%s x:%.4f, y:%.4f", #point, point.x, point.y)
+#define debugInsets(insets) debug("[t:%d, l:%d, b:%d, r:%d]" , #insets, (int) insets.top, (int) insets.left, (int) insets.bottom, (int) insets.right)
 
 #endif

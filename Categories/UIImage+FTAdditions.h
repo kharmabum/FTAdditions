@@ -1,6 +1,7 @@
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import UIKit;
 
-@interface UIImage (FTAdditions) 
+@interface UIImage (FTAdditions)
 
 - (UIColor *)averageColor;
 + (UIImage *)imageFromDiskNamed:(NSString *)imageName;
