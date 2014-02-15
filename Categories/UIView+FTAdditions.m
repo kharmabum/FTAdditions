@@ -345,15 +345,19 @@
 
 -(NSLayoutConstraint *)constrainToWidthOfView:(UIView *)peerView
 {
-	 	NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:peerView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
-    [self addConstraint:constraint];
+    UIView *superview = [self nearestCommonAncestor:peerView];
+    NSAssert(superview,@"Can't create constraints without a common superview");
+	NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:peerView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
+    [superview addConstraint:constraint];
     return constraint;
 }
 
 -(NSLayoutConstraint *)constrainToHeightOfView:(UIView *)peerView
 {
+    UIView *superview = [self nearestCommonAncestor:peerView];
+    NSAssert(superview,@"Can't create constraints without a common superview");
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:peerView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0];
-    [self addConstraint:constraint];
+    [superview addConstraint:constraint];
     return constraint;
 }
 
