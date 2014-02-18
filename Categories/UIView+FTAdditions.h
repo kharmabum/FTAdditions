@@ -55,6 +55,9 @@ typedef NS_ENUM(NSUInteger, FTUIViewVerticalAlignment) {
 // Pins a point to a specific point in the superview's frame. Use NSLayoutAttributeNotAnAttribute to only pin in one dimension
 -(NSArray*)pinXAttribute:(NSLayoutAttribute)x YAttribute:(NSLayoutAttribute)y toPointInSuperview:(CGPoint)point;
 
+/// Pins an attribute to the same attribute of the peer item. The item may be the layout guide of a view controller
+-(NSLayoutConstraint *)pinAttribute:(NSLayoutAttribute)attribute toSameAttributeOfItem:(id)peerItem;
+
 /* Spacing */
 
 // Centers the receiver in the superview

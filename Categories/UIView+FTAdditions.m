@@ -236,6 +236,23 @@
     return [constraints copy];
 }
 
+-(NSLayoutConstraint *)pinAttribute:(NSLayoutAttribute)attribute toSameAttributeOfItem:(id)peerItem
+{
+    NSParameterAssert(peerItem);
+    UIView *superview;
+    if ([peerItem isKindOfClass:[UIView class]]) {
+        superview = [self nearestCommonAncestor:peerItem];
+    }
+    else {
+        superview = self.superview;
+    }
+
+    NSAssert(superview,@"Can't create constraints without a common superview");
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:attribute relatedBy:NSLayoutRelationEqual toItem:peerItem attribute:attribute multiplier:1.0 constant:0.0];
+    [superview addConstraint:constraint];
+    return constraint;
+}
+
 /* Spacing */
 
 // Centers the receiver in its container
