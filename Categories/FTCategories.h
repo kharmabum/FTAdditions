@@ -7,5 +7,6 @@
 #import "UIImage+FTAdditions.h"
 #import "UIView+FTAdditions.h"
 #import "UIColor+FTAdditions.h"
+#import "NSLayoutConstraint+FTAdditions.h"
 
 #endif
