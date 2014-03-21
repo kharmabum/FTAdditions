@@ -8,5 +8,6 @@
 #import "UIView+FTAdditions.h"
 #import "UIColor+FTAdditions.h"
 #import "NSLayoutConstraint+FTAdditions.h"
+#import "NSString+FTAdditions.h"
 
 #endif
