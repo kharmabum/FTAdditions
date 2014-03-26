@@ -14,7 +14,7 @@
 
 - (void)performBlockOnMainThread: (dispatch_block_t)block
 {
-	dispatch_sync(
+	dispatch_async(
                   dispatch_get_main_queue(),
                   block);
 }
