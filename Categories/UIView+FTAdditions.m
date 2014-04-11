@@ -541,8 +541,8 @@
 
 #pragma mark - Animation
 
-extern NSTimeInterval const kFTDefaultEntryAnimationDuration = 0.33;
-extern NSTimeInterval const kFTDefaultExitAnimationDuration = 0.2;
+NSTimeInterval const kFTDefaultEntryAnimationDuration = 0.33;
+NSTimeInterval const kFTDefaultExitAnimationDuration = 0.2;
 
 
 + (void)animateIf: (BOOL)condition

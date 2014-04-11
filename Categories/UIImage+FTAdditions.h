@@ -9,6 +9,5 @@
 
 - (UIColor *)averageColor;
 - (UIImage *)imageByApplyingAlpha:(CGFloat)alpha;
-- (UIImage *)overlayWithImage:(UIImage *)image;
 
 @end
