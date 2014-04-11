@@ -79,12 +79,12 @@
 
 /* Pinning */
 
--(NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem
+- (NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem
 {
     return [self pinEdge:edge toEdge:toEdge ofItem:peerItem inset:0.0];
 }
 
--(NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem inset:(CGFloat)inset
+- (NSLayoutConstraint *)pinEdge:(FTUIViewEdgePin)edge toEdge:(FTUIViewEdgePin)toEdge ofItem:(id)peerItem inset:(CGFloat)inset
 {
     NSLayoutAttribute edgeAttribute, toEdgeAttribute;
     NSUInteger edgeCount = 0;
@@ -126,11 +126,11 @@
 
 }
 
--(NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView
+- (NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView
 {
     return [self pinEdges:edges toSameEdgesOfView:peerView inset:0];
 }
--(NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView inset:(CGFloat)inset
+- (NSArray *)pinEdges:(FTUIViewEdgePin)edges toSameEdgesOfView:(UIView *)peerView inset:(CGFloat)inset
 {
     NSMutableArray *constraints = [NSMutableArray arrayWithCapacity:4];
     if (edges & FTUIViewEdgePinTop) {
@@ -148,12 +148,12 @@
     return [constraints copy];
 }
 
--(NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset;
+- (NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset;
 {
 	return [self pinEdges:edges toSuperViewWithInset:inset usingLayoutGuidesFrom:nil];
 }
 
--(NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset usingLayoutGuidesFrom:(UIViewController*)viewController
+- (NSArray*)pinEdges:(FTUIViewEdgePin)edges toSuperViewWithInset:(CGFloat)inset usingLayoutGuidesFrom:(UIViewController*)viewController
 {
     UIView *superview = self.superview;
     NSAssert(superview,@"Can't pin to a superview if no superview exists");
@@ -213,7 +213,7 @@
     return constraint;
 }
 
--(NSArray*)pinXAttribute:(NSLayoutAttribute)x YAttribute:(NSLayoutAttribute)y toPointInSuperview:(CGPoint)point
+- (NSArray*)pinXAttribute:(NSLayoutAttribute)x YAttribute:(NSLayoutAttribute)y toPointInSuperview:(CGPoint)point
 {
     UIView *superview = self.superview;
     NSAssert(superview,@"Can't create constraints without a superview");
@@ -236,7 +236,7 @@
     return [constraints copy];
 }
 
--(NSLayoutConstraint *)pinAttribute:(NSLayoutAttribute)attribute toSameAttributeOfItem:(id)peerItem
+- (NSLayoutConstraint *)pinAttribute:(NSLayoutAttribute)attribute toSameAttributeOfItem:(id)peerItem
 {
     NSParameterAssert(peerItem);
     UIView *superview;
@@ -256,7 +256,7 @@
 /* Spacing */
 
 // Centers the receiver in its container
--(NSArray *)centerInSuperview
+- (NSArray *)centerInSuperview
 {
     UIView *superview = self.superview;
     NSParameterAssert(superview);
@@ -264,7 +264,7 @@
 }
 
 // Centers the receiver in the superview
--(NSArray *)centerInView:(UIView*)superview
+- (NSArray *)centerInView:(UIView*)superview
 {
     NSMutableArray *constraints = [NSMutableArray new];
     [constraints addObject:[self centerInView:superview onAxis:NSLayoutAttributeCenterX]];
@@ -272,7 +272,7 @@
     return [constraints copy];
 }
 
--(NSLayoutConstraint *)centerInView:(UIView*)superview onAxis:(NSLayoutAttribute)axis
+- (NSLayoutConstraint *)centerInView:(UIView*)superview onAxis:(NSLayoutAttribute)axis
 {
     NSParameterAssert(axis == NSLayoutAttributeCenterX || axis == NSLayoutAttributeCenterY);
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:axis relatedBy:NSLayoutRelationEqual toItem:superview attribute:axis multiplier:1.0 constant:0.0];
@@ -280,7 +280,7 @@
     return constraint;
 }
 
--(void)spaceViews:(NSArray *)views onAxis:(UILayoutConstraintAxis)axis
+- (void)spaceViews:(NSArray *)views onAxis:(UILayoutConstraintAxis)axis
 {
     NSAssert([views count] > 1,@"Can only distribute 2 or more views");
 
@@ -307,7 +307,7 @@
     }];
 }
 
--(void)spaceViews:(NSArray*)views onAxis:(UILayoutConstraintAxis)axis withSpacing:(CGFloat)spacing alignmentOptions:(NSLayoutFormatOptions)options;
+- (void)spaceViews:(NSArray*)views onAxis:(UILayoutConstraintAxis)axis withSpacing:(CGFloat)spacing alignmentOptions:(NSLayoutFormatOptions)options;
 {
     NSAssert([views count] > 1,@"Can only distribute 2 or more views");
     NSString *direction = nil;
@@ -346,21 +346,21 @@
 
 /* Size constraints */
 
--(NSLayoutConstraint *)constrainToWidth:(CGFloat)width
+- (NSLayoutConstraint *)constrainToWidth:(CGFloat)width
 {
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:0 constant:width];
     [self addConstraint:constraint];
     return constraint;
 }
 
--(NSLayoutConstraint *)constrainToHeight:(CGFloat)height
+- (NSLayoutConstraint *)constrainToHeight:(CGFloat)height
 {
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:0 constant:height];
     [self addConstraint:constraint];
     return constraint;
 }
 
--(NSLayoutConstraint *)constrainToWidthOfView:(UIView *)peerView
+- (NSLayoutConstraint *)constrainToWidthOfView:(UIView *)peerView
 {
     UIView *superview = [self nearestCommonAncestor:peerView];
     NSAssert(superview,@"Can't create constraints without a common superview");
@@ -369,7 +369,7 @@
     return constraint;
 }
 
--(NSLayoutConstraint *)constrainToHeightOfView:(UIView *)peerView
+- (NSLayoutConstraint *)constrainToHeightOfView:(UIView *)peerView
 {
     UIView *superview = [self nearestCommonAncestor:peerView];
     NSAssert(superview,@"Can't create constraints without a common superview");
@@ -378,7 +378,7 @@
     return constraint;
 }
 
--(NSArray *)constrainToSize:(CGSize)size
+- (NSArray *)constrainToSize:(CGSize)size
 {
     NSMutableArray *constraints = [NSMutableArray arrayWithCapacity:2];
     if (size.width) [constraints addObject:[self constrainToWidth:size.width]];
@@ -386,7 +386,7 @@
     return [constraints copy];
 }
 
--(NSArray *)constrainToMinimumSize:(CGSize)minimum
+- (NSArray *)constrainToMinimumSize:(CGSize)minimum
 {
     NSMutableArray *constraints = [NSMutableArray arrayWithCapacity:2];
     if (minimum.width)
@@ -397,7 +397,7 @@
     return [constraints copy];
 }
 
--(NSArray *)constrainToMaximumSize:(CGSize)maximum
+- (NSArray *)constrainToMaximumSize:(CGSize)maximum
 {
     NSMutableArray *constraints = [NSMutableArray arrayWithCapacity:2];
     if (maximum.width)
@@ -408,7 +408,7 @@
     return [constraints copy];
 }
 
--(NSArray *)constrainToMinimumSize:(CGSize)minimum maximumSize:(CGSize)maximum
+- (NSArray *)constrainToMinimumSize:(CGSize)minimum maximumSize:(CGSize)maximum
 {
     NSAssert(minimum.width <= maximum.width, @"maximum width should be strictly wider than or equal to minimum width");
     NSAssert(minimum.height <= maximum.height, @"maximum height should be strictly higher than or equal to minimum height");
@@ -476,6 +476,14 @@
 	[self alignVertically: verticalAlignment];
 }
 
+- (void)fillSuperview
+{
+    self.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin   |
+                             UIViewAutoresizingFlexibleRightMargin  |
+                             UIViewAutoresizingFlexibleTopMargin    |
+                             UIViewAutoresizingFlexibleBottomMargin);
+}
+
 #pragma mark - Util
 
 - (void)removeAllSubviews
@@ -533,6 +541,10 @@
 
 #pragma mark - Animation
 
+extern NSTimeInterval const kFTDefaultEntryAnimationDuration = 0.33;
+extern NSTimeInterval const kFTDefaultExitAnimationDuration = 0.2;
+
+
 + (void)animateIf: (BOOL)condition
          duration: (NSTimeInterval)duration
             delay: (NSTimeInterval)delay
@@ -556,6 +568,287 @@
 			completion(NO);
 		}
 	}
+}
+
+// Canvas Animations
+//
+- (void)performAnimationOfType:(FTAnimationType)type
+{
+    [self performAnimationOfType:type duration:0 delay:0];
+}
+
+- (void)performAnimationOfType:(FTAnimationType)type duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay
+{
+    switch (type) {
+        case FTAnimationTypeBounceLeft: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(300, 0);
+            [UIView animateKeyframesWithDuration:duration/4 delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(-10, 0);
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                    self.transform = CGAffineTransformMakeTranslation(5, 0);
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                        self.transform = CGAffineTransformMakeTranslation(-2, 0);
+                    } completion:^(BOOL finished) {
+                        [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                            self.transform = CGAffineTransformMakeTranslation(0, 0);
+                        } completion:NULL];
+                    }];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeBounceRight: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(-300, 0);
+            [UIView animateKeyframesWithDuration:duration/4 delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(10, 0);
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                    self.transform = CGAffineTransformMakeTranslation(-5, 0);
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                        self.transform = CGAffineTransformMakeTranslation(2, 0);
+                    } completion:^(BOOL finished) {
+                        [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                            self.transform = CGAffineTransformMakeTranslation(0, 0);
+                        } completion:NULL];
+                    }];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeBounceDown: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(0, -300);
+            [UIView animateKeyframesWithDuration:duration/4 delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(0, -10);
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                    self.transform = CGAffineTransformMakeTranslation(0, 5);
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                        self.transform = CGAffineTransformMakeTranslation(0, -2);
+                    } completion:^(BOOL finished) {
+                        [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                            self.transform = CGAffineTransformMakeTranslation(0, 0);
+                        } completion:NULL];
+                    }];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeBounceUp: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(0, 300);
+            [UIView animateKeyframesWithDuration:duration/4 delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(0, 10);
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                    self.transform = CGAffineTransformMakeTranslation(0, -5);
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                        self.transform = CGAffineTransformMakeTranslation(0, 2);
+                    } completion:^(BOOL finished) {
+                        [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                            self.transform = CGAffineTransformMakeTranslation(0, 0);
+                        } completion:NULL];
+                    }];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeFadeIn: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.alpha = 0;
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.alpha = 1;
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeFadeOut: {
+            duration = (duration) ?: kFTDefaultExitAnimationDuration;
+            self.alpha = 1;
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.alpha = 0;
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeFadeInLeft: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.alpha = 0;
+            self.transform = CGAffineTransformMakeTranslation(300, 0);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.alpha = 1;
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeFadeInRight: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.alpha = 0;
+            self.transform = CGAffineTransformMakeTranslation(-300, 0);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.alpha = 1;
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeFadeInDown: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.alpha = 0;
+            self.transform = CGAffineTransformMakeTranslation(0, -300);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.alpha = 1;
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeFadeInUp: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.alpha = 0;
+            self.transform = CGAffineTransformMakeTranslation(0, 300);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.alpha = 1;
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeSlideLeft: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(300, 0);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeSlideRight: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(-300, 0);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeSlideDown: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(0, -300);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeSlideUp: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(0, 300);
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(0, 0);
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypePop: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeScale(1, 1);
+            [UIView animateKeyframesWithDuration:duration/3 delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeScale(1.2, 1.2);
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/3 delay:0 options:0 animations:^{
+                    self.transform = CGAffineTransformMakeScale(0.9, 0.9);
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/3 delay:0 options:0 animations:^{
+                        self.transform = CGAffineTransformMakeScale(1, 1);
+                    } completion:NULL];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeMorph: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeScale(1, 1);
+            [UIView animateKeyframesWithDuration:duration/4 delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeScale(1, 1.2);
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                    self.transform = CGAffineTransformMakeScale(1.2, 0.9);
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                        self.transform = CGAffineTransformMakeScale(0.9, 0.9);
+                    } completion:^(BOOL finished) {
+                        [UIView animateKeyframesWithDuration:duration/4 delay:0 options:0 animations:^{
+                            self.transform = CGAffineTransformMakeScale(1, 1);
+                        } completion:NULL];
+                    }];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeFlash: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.alpha = 0;
+            [UIView animateKeyframesWithDuration:duration/3 delay:delay options:0 animations:^{
+                self.alpha = 1;
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/3 delay:0 options:0 animations:^{
+                    self.alpha = 0;
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/3 delay:0 options:0 animations:^{
+                        self.alpha = 1;
+                    } completion:NULL];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeShake: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeTranslation(0, 0);
+            [UIView animateKeyframesWithDuration:duration/5 delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeTranslation(30, 0);
+            } completion:^(BOOL finished) {
+                [UIView animateKeyframesWithDuration:duration/5 delay:0 options:0 animations:^{
+                    self.transform = CGAffineTransformMakeTranslation(-30, 0);
+                } completion:^(BOOL finished) {
+                    [UIView animateKeyframesWithDuration:duration/5 delay:0 options:0 animations:^{
+                        self.transform = CGAffineTransformMakeTranslation(15, 0);
+                    } completion:^(BOOL finished) {
+                        [UIView animateKeyframesWithDuration:duration/5 delay:0 options:0 animations:^{
+                            self.transform = CGAffineTransformMakeTranslation(-15, 0);
+                        } completion:^(BOOL finished) {
+                            [UIView animateKeyframesWithDuration:duration/5 delay:0 options:0 animations:^{
+                                self.transform = CGAffineTransformMakeTranslation(0, 0);
+                            } completion:NULL];
+                        }];
+                    }];
+                }];
+            }];
+            break;
+        }
+        case FTAnimationTypeZoomIn: {
+            duration = (duration) ?: kFTDefaultEntryAnimationDuration;
+            self.transform = CGAffineTransformMakeScale(2, 2);
+            self.alpha = 0;
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeScale(1, 1);
+                self.alpha = 1;
+            } completion:NULL];
+            break;
+        }
+        case FTAnimationTypeZoomOut: {
+            duration = (duration) ?: kFTDefaultExitAnimationDuration;
+            self.transform = CGAffineTransformMakeScale(1, 1);
+            self.alpha = 1;
+            [UIView animateKeyframesWithDuration:duration delay:delay options:0 animations:^{
+                self.transform = CGAffineTransformMakeScale(2, 2);
+                self.alpha = 0;
+            } completion:^(BOOL finished) {
+                self.transform = CGAffineTransformMakeScale(1, 1);
+            }];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 @end

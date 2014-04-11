@@ -25,6 +25,31 @@ typedef NS_ENUM(NSUInteger, FTUIViewVerticalAlignment) {
   FTUIViewVerticalAlignmentBottom = 2
 };
 
+/* Animations (Canvas) */
+
+typedef NS_ENUM(NSUInteger, FTAnimationType) {
+    FTAnimationTypeBounceLeft,
+    FTAnimationTypeBounceRight,
+    FTAnimationTypeBounceDown,
+    FTAnimationTypeBounceUp,
+    FTAnimationTypeFadeIn,
+    FTAnimationTypeFadeOut,
+    FTAnimationTypeFadeInLeft,
+    FTAnimationTypeFadeInRight,
+    FTAnimationTypeFadeInDown,
+    FTAnimationTypeFadeInUp,
+    FTAnimationTypeSlideLeft,
+    FTAnimationTypeSlideRight,
+    FTAnimationTypeSlideDown,
+    FTAnimationTypeSlideUp,
+    FTAnimationTypePop,
+    FTAnimationTypeMorph,
+    FTAnimationTypeFlash,
+    FTAnimationTypeShake,
+    FTAnimationTypeZoomIn,
+    FTAnimationTypeZoomOut
+};
+
 
 @interface UIView (FTAdditions)
 
@@ -100,6 +125,7 @@ typedef NS_ENUM(NSUInteger, FTUIViewVerticalAlignment) {
 - (void)alignVertically:(FTUIViewVerticalAlignment)verticalAlignment;
 - (void)alignHorizontally:(FTUIViewHorizontalAlignment)horizontalAlignment
                vertically:(FTUIViewVerticalAlignment)verticalAlignment;
+- (void)fillSuperview;
 
 #pragma mark - Util
 
@@ -111,11 +137,18 @@ typedef NS_ENUM(NSUInteger, FTUIViewVerticalAlignment) {
 
 #pragma mark - Animation
 
+extern NSTimeInterval const kFTDefaultEntryAnimationDuration;
+extern NSTimeInterval const kFTDefaultExitAnimationDuration;
+
+
 + (void)animateIf: (BOOL)condition
          duration: (NSTimeInterval)duration
             delay: (NSTimeInterval)delay
           options: (UIViewAnimationOptions)options
        animations: (void (^)(void))animations
        completion: (void (^)(BOOL finished))completion;
+
+- (void)performAnimationOfType:(FTAnimationType)type;
+- (void)performAnimationOfType:(FTAnimationType)type duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay;
 
 @end
