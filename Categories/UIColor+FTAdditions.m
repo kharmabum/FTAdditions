@@ -1,4 +1,6 @@
 #import "UIColor+FTAdditions.h"
+#import <SAMCategories.h>
+
 
 @implementation UIColor (FTAdditions)
 
@@ -58,6 +60,28 @@
     CGFloat hue = 0, saturation = 0, brightness = 0, alpha = 0;
     [self getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
     return [UIColor colorWithHue:hue saturation:saturation*(1+darken) brightness:brightness*(1-darken) alpha:alpha];
+}
+
+#pragma mark - Defaults
+
++ (UIColor *)ft_orangeColor
+{
+    return [UIColor sam_colorWithHex:@"0xFFBB00"];
+}
+
++ (UIColor *)ft_greenColor
+{
+    return [UIColor sam_colorWithHex:@"0x00FF91"];
+}
+
++ (UIColor *)ft_blueColor
+{
+    return [UIColor sam_colorWithHex:@"0x00C4FF"];
+}
+
++ (UIColor *)ft_redColor
+{
+    return [UIColor sam_colorWithHex:@"0xFF0045"];
 }
 
 @end

@@ -19,4 +19,11 @@
 - (UIColor *)lightenColor:(CGFloat)lighten;
 - (UIColor *)darkenColor:(CGFloat)darken;
 
+#pragma mark - Defaults
+
++ (UIColor *)ft_orangeColor;
++ (UIColor *)ft_greenColor;
++ (UIColor *)ft_blueColor;
++ (UIColor *)ft_redColor;
+
 @end

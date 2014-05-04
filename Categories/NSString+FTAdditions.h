@@ -16,4 +16,6 @@
 
 - (NSString *)stringByTrimmingTrailingWhitespaceAndNewlineCharacters;
 
+- (BOOL)isAlphaNumeric;
+
 @end

@@ -9,5 +9,7 @@
 #import "UIColor+FTAdditions.h"
 #import "NSLayoutConstraint+FTAdditions.h"
 #import "NSString+FTAdditions.h"
+#import "CLLocation+FTAdditions.h"
+#import "MKMapView+FTAdditions.h"
 
 #endif
